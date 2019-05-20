@@ -1737,8 +1737,18 @@
     				button = opts.button,
     				style = opts.style || 'webuploader-pick';
     
-    			if (style)
+    			if (button) {
+    				var btnClass = $(button).attr("class");
+    				if (btnClass != undefined) {
+    					var classArr = btnClass.split(' '),
+    						classLen = classArr.length;
+    					style = classLen > 1 ? classArr[classLen - 1] : btnClass;
+    				}
+    				style = btnClass;
+    			} else {
     				button.addClass(style);
+    			}
+    
     
     			me.on('all', function(type) {
     				var files;
